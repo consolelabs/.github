@@ -9,13 +9,21 @@ name: No AI commits
 #       uses: consolelabs/.github/.github/workflows/no-ai-commits.yml@main
 on:
   workflow_call:
+    inputs:
+      runs-on:
+        # JSON string, because a workflow_call input cannot be an array.
+        # Default is GitHub-hosted: the Mini pr-shared pool admits private
+        # repos only, so a public caller must not point at it.
+        # Private callers pass '["self-hosted","pr-shared"]'.
+        type: string
+        default: '"ubuntu-latest"'
 
 permissions:
   contents: read
 
 jobs:
   check:
-    runs-on: [self-hosted, pr-shared]
+    runs-on: ${{ fromJSON(inputs.runs-on) }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
