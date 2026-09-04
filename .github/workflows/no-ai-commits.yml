@@ -1,0 +1,46 @@
+name: No AI commits
+# Reusable check: every commit in a pull request must be authored by a person.
+# Fails on a Co-authored-by trailer or an author/committer that names an AI
+# tool. The org rule: AI writes code, a human owns the commit.
+#
+# Call it from a repo's pr-check:
+#   jobs:
+#     no-ai-commits:
+#       uses: consolelabs/.github/.github/workflows/no-ai-commits.yml@main
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: [self-hosted, pr-shared]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Every commit in the PR is human-authored
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          pattern='claude|anthropic|copilot|openai|chatgpt|gpt-|cursor|codex|gemini|devin|aider|\[bot\]'
+          bad=0
+          for sha in $(git rev-list "$BASE".."$HEAD"); do
+            meta=$(git log -1 --format='%an <%ae>%n%cn <%ce>' "$sha")
+            trailers=$(git log -1 --format='%(trailers:key=Co-authored-by,key=Co-Authored-By)' "$sha")
+            if printf '%s\n' "$meta" | grep -qiE "$pattern"; then
+              echo "::error::$sha is authored or committed by an AI identity: $(printf '%s' "$meta" | tr '\n' ' ')"; bad=1
+            fi
+            if [ -n "$trailers" ]; then
+              echo "::error::$sha carries a Co-authored-by trailer: $(printf '%s' "$trailers" | tr '\n' ' ')"; bad=1
+            fi
+          done
+          if [ "$bad" -ne 0 ]; then
+            echo "Drop the trailer and re-commit. Claude Code: set \"includeCoAuthoredBy\": false in ~/.claude/settings.json. Squash-merges: keep one git identity so GitHub adds no trailer for you."
+            exit 1
+          fi
+          echo "every commit is human-authored, no trailers."
