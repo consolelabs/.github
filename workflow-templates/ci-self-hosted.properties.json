@@ -1,0 +1,6 @@
+{
+  "name": "Console Labs CI (self-hosted)",
+  "description": "Runs on the Mac Mini pr-shared pool. Console Labs CI does not use GitHub-hosted runners.",
+  "iconName": "octicon server",
+  "categories": ["Continuous integration"]
+}
