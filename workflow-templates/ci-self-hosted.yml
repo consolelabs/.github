@@ -1,0 +1,46 @@
+name: CI
+
+# Console Labs CI runs on our own hardware, never on GitHub-hosted runners.
+# See workflow-templates/README.md for which pool to pick and why.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A PR job needs to read the code and nothing else. Without this the job
+# inherits the org default, which on many orgs is still read-write everywhere.
+permissions:
+  contents: read
+
+# The pool is small, so a push that supersedes an earlier one must release
+# its instance instead of holding it.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    # pr-shared: the org-scoped PR pool on the Mac Mini. It holds no repo
+    # secret and no deploy capability, which is why pull_request jobs point
+    # here. Anything that needs a credential belongs on cl-trusted instead,
+    # and cl-trusted must never accept a pull_request job.
+    runs-on: [self-hosted, pr-shared]
+    steps:
+      # persist-credentials: false because on a self-hosted runner the
+      # checkout token stays on disk and is reachable by any dependency
+      # postinstall running in the same job.
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      # The runner image is a plain Debian slim. It ships no package manager
+      # beyond what these actions install, so declare the ones you need.
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
