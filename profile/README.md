@@ -1,31 +1,32 @@
 # Console Labs
 
-**Crypto-native products and an original character IP.** &nbsp;·&nbsp; [console.so](https://console.so)
+**Games first, then everything around them.** &nbsp;·&nbsp; [console.so](https://console.so)
 
-Console Labs builds tools that make on-chain finance feel as simple as sending a
-message, and grows an original character world on top of them.
+Console Labs is a small games studio. We make games people choose to spend their time on, and we grow the characters in them into stickers, comics and stories.
 
-## 🐱 Cyber Neko
+## 🎮 What we make
 
-Our flagship character IP: a cat-and-Mochi universe of collectibles, stickers,
-and comics. More soon.
+- **Games** for [Playdate](https://play.date), the web and Steam.
+- **Characters and stories** that outlive one game, led by Neko, our yellow cat.
+- **Small tools and apps** built with the same craft.
 
-## Products
+Our current games, with screenshots and links, are always on [console.so](https://console.so).
 
-- **Mochi** &nbsp;a crypto bot for Discord and Telegram. Tip and send tokens, track wallets and prices, and run community rewards, powered by **Mochi Pay**, an in-app wallet that works across chains without leaving chat.
-- **Tono** &nbsp;a Discord assistant that pairs live on-chain data with an LLM, so communities can ask about tokens and markets in plain language.
-- **ICY** &nbsp;a BTC to ICY swap and treasury. The ICY token is live on Base.
+## 🐱 Neko and friends
 
-## Open source
+- [Neko stickers](https://sticker.console.so) for your chats.
+- [WAGMI comics](https://wagmicomics.com), short comics told through Mochi and Neko.
 
-Most of our libraries are public. Start with these, or browse all
-[repositories](https://github.com/orgs/consolelabs/repositories):
+## 👋 Team
 
-- [mochi-ui](https://github.com/consolelabs/mochi-ui): accessible React UI library for web3 apps
-- [mochi.js](https://github.com/consolelabs/mochi.js): Mochi monorepo and SDKs
-- [mochi-go-sdk](https://github.com/consolelabs/mochi-go-sdk): Go SDK
+A small team of builders, artists and game designers. Say hi at team@console.so.
+
+## Earlier work
+
+Before games, we built crypto products. They are archived now, and their code stays public for reference.
 
 ## Links
 
-- Website: [console.so](https://console.so)
-- Changelog: [log.console.so](https://log.console.so)
+- Games: [console.so](https://console.so)
+- Studio log: [log.console.so](https://log.console.so)
+- Contact: team@console.so
