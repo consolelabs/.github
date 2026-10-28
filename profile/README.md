@@ -1,31 +1,34 @@
 # Console Labs
 
-**Crypto-native products and an original character IP.** &nbsp;·&nbsp; [console.so](https://console.so)
+**Games first, then everything around them.** &nbsp;·&nbsp; [console.so](https://console.so)
 
-Console Labs builds tools that make on-chain finance feel as simple as sending a
-message, and grows an original character world on top of them.
+Console Labs is a small games studio. We make games people choose to spend their time on, for [Playdate](https://play.date), the web and Steam, and we grow the characters in them into stickers, comics and stories.
 
-## 🐱 Cyber Neko
+## 🎮 Games
 
-Our flagship character IP: a cat-and-Mochi universe of collectibles, stickers,
-and comics. More soon.
+- **Playdate games:** Safu, Fanlight, Lobshot, Beast Duel, The Usual Sus and Dicemancer. See them all at [console.so](https://console.so).
+- **Three Kingdoms Survivor:** a survivors-like set in the Three Kingdoms era, in development.
+- **Pod Arena:** a hero card game set in the Pod Town world. Coming later.
 
-## Products
+## 🐱 Neko and friends
 
-- **Mochi** &nbsp;a crypto bot for Discord and Telegram. Tip and send tokens, track wallets and prices, and run community rewards, powered by **Mochi Pay**, an in-app wallet that works across chains without leaving chat.
-- **Tono** &nbsp;a Discord assistant that pairs live on-chain data with an LLM, so communities can ask about tokens and markets in plain language.
-- **ICY** &nbsp;a BTC to ICY swap and treasury. The ICY token is live on Base.
+Neko, our yellow cat, is the face of the studio.
 
-## Open source
+- [Neko stickers](https://sticker.console.so) for Telegram, Discord, LINE and WhatsApp.
+- [WAGMI comics](https://wagmicomics.com), short comics starring the Pod Town crew.
 
-Most of our libraries are public. Start with these, or browse all
-[repositories](https://github.com/orgs/consolelabs/repositories):
+## 👋 Team
 
-- [mochi-ui](https://github.com/consolelabs/mochi-ui): accessible React UI library for web3 apps
-- [mochi.js](https://github.com/consolelabs/mochi.js): Mochi monorepo and SDKs
-- [mochi-go-sdk](https://github.com/consolelabs/mochi-go-sdk): Go SDK
+- **Han Ngo** ([@tieubao](https://github.com/tieubao)): founder, product and go-to-market.
+- **Vincent** ([@tuanddd](https://github.com/tuanddd)): games, and the console.so store.
+- **Phuc** ([@phucld](https://github.com/phucld)): games.
+
+## Earlier work
+
+Before games, we built crypto products: Mochi, Mochi UI, Tono and Pod Town. They are archived now. Their code stays public for reference, for example [mochi-ui](https://github.com/consolelabs/mochi-ui), our React UI library.
 
 ## Links
 
-- Website: [console.so](https://console.so)
-- Changelog: [log.console.so](https://log.console.so)
+- Games: [console.so](https://console.so)
+- Studio log: [log.console.so](https://log.console.so)
+- Contact: team@console.so
