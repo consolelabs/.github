@@ -7,7 +7,7 @@ Console Labs is a small games studio. We make games people choose to spend their
 ## 🎮 Games
 
 - **Playdate games:** Safu, Fanlight, Lobshot, Beast Duel, The Usual Sus and Dicemancer. See them all at [console.so](https://console.so).
-- **Three Kingdoms Survivor:** a survivors-like set in the Three Kingdoms era, in development.
+- **Three Kingdoms Survivor:** a survivors-style action game set in the Three Kingdoms era. You play a general such as Guan Yu and hold off waves of enemies. In development.
 - **Pod Arena:** a hero card game set in the Pod Town world. Coming later.
 
 ## 🐱 Neko and friends
@@ -15,7 +15,7 @@ Console Labs is a small games studio. We make games people choose to spend their
 Neko, our yellow cat, is the face of the studio.
 
 - [Neko stickers](https://sticker.console.so) for Telegram, Discord, LINE and WhatsApp.
-- [WAGMI comics](https://wagmicomics.com), short comics starring the Pod Town crew.
+- [WAGMI comics](https://wagmicomics.com), short comics about money in everyday life, told through Mochi and Neko.
 
 ## 👋 Team
 
