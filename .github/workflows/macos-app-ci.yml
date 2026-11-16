@@ -1,9 +1,8 @@
-# Mirror of dwarvesf/.github/.github/workflows/macos-app-ci.yml (the source of truth and
-# its standard: dwarvesf/.github docs/macos-app-ci.md). consolelabs repos only allow
-# reusable workflows owned by consolelabs, so they call this copy. Edit both together.
+# Source of truth for the macOS app CI standard (docs/macos-app-ci.md in this repo).
+# dwarvesf/.github keeps a mirror for dwarvesf repos until they move here; change both.
 name: macos app ci
 
-# Reusable CI for Dwarves macOS apps. The standard it implements: docs/macos-app-ci.md.
+# Reusable CI for Dwarves macOS apps. The standard it implements: docs/macos-app-ci.md (consolelabs/.github).
 #
 #   jobs:
 #     ci:
@@ -13,10 +12,11 @@ name: macos app ci
 #         test_scheme: MyApp
 #         release_scheme: MyAppDirect   # optional; built on pushes only
 #
-# Tests run on the macos-ui runner, a macOS VM on the Mac Mini, because app-hosted
-# tests launch the app and must never open it on the Mini's own screen. The Release
-# build runs on the Mini's host runner, on pushes to the default branch only. Both keep DerivedData and SwiftPM checkouts
-# on the runner's own disk between runs; no actions/cache round trip.
+# Both jobs run inside the mac-ui VM on the Mac Mini, never on the host: tests on the
+# macos-ui runner (they may open the app), the Release build on the macos-build runner
+# (pushes to the default branch only), side by side. Each job keeps its own DerivedData
+# and SwiftPM checkouts on the VM disk between runs; no actions/cache round trip.
+# No job runs as the Mini's own user, so a collaborator's workflow edit cannot reach it.
 on:
   workflow_call:
     inputs:
@@ -46,7 +46,7 @@ on:
       build_runner:
         description: JSON label list for the Release build job
         type: string
-        default: '["self-hosted", "macOS", "ARM64"]'
+        default: '["self-hosted", "macos-build"]'
 
 permissions:
   contents: read
@@ -78,7 +78,7 @@ jobs:
           cache="$HOME/ci-cache/${GITHUB_REPOSITORY//\//_}"
           case "$PROJECT" in *.xcworkspace) kind=-workspace ;; *) kind=-project ;; esac
           xcodebuild test "$kind" "$PROJECT" -scheme "$SCHEME" -destination "$DEST" \
-            -derivedDataPath "$cache/test" -clonedSourcePackagesDirPath "$cache/spm" \
+            -derivedDataPath "$cache/test" -clonedSourcePackagesDirPath "$cache/test-spm" \
             CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER=
 
       - name: Quit the test host
@@ -103,5 +103,5 @@ jobs:
           cache="$HOME/ci-cache/${GITHUB_REPOSITORY//\//_}"
           case "$PROJECT" in *.xcworkspace) kind=-workspace ;; *) kind=-project ;; esac
           xcodebuild build "$kind" "$PROJECT" -scheme "$SCHEME" -configuration Release \
-            -derivedDataPath "$cache/release" -clonedSourcePackagesDirPath "$cache/spm" \
+            -derivedDataPath "$cache/release" -clonedSourcePackagesDirPath "$cache/release-spm" \
             CODE_SIGNING_ALLOWED=NO -quiet

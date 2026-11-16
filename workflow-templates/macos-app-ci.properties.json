@@ -1,0 +1,7 @@
+{
+  "name": "Console Labs macOS app CI",
+  "description": "Tests and the Release build run in the macOS VM on the Mac Mini, side by side, with warm DerivedData. Follows docs/macos-app-ci.md.",
+  "iconName": "octicon device-desktop",
+  "categories": ["Continuous integration", "Swift"],
+  "filePatterns": ["\\.xcodeproj$", "\\.xcworkspace$"]
+}
