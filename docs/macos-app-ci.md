@@ -39,8 +39,21 @@ Measured on hacker-bar, hidden and blurred (Nov 2026): the queue wait was a few 
 | `paths-ignore` for docs, plus `concurrency` that cancels superseded PR runs (never a default-branch run) | hacker-bar ran 66 times in 24 h, docs-only commits included. |
 | Pure-logic code gets a test target without `TEST_HOST` | An app-hosted test pays about 15 to 20 s of app startup; hacker-bar's tests themselves run in about 2 s. |
 | `xcodebuild -quiet` on the Release build only, never on tests | `-quiet` hides a failing test's assertion text. |
+| `parallel_testing: true` when the tests split across several test classes | foundations, 340 tests on the VM's 4 cores: a warm test job went from 4 min 4 s to 2 min 56 s. Parallel testing splits by class, so the longest class bounds the run (there, one 158 s render class). |
 
 Measured after the move: blurred went from a 51 s median on the host to 34 s per master push; hacker-bar from a 109 s median to about 60 s.
+
+## Optional inputs
+
+Each is off by default, so a caller that does not set it sees no change.
+
+| Input | What it does | When |
+|---|---|---|
+| `parallel_testing` | Adds `-parallel-testing-enabled YES` to the test run | Tests spread over several classes; measure before and after |
+| `test_action` | `test` (default) or `build-for-testing` | A destination with no runtime to run on: the VM has the iOS Simulator SDK but no simulator runtime, so an iOS caller passes `build-for-testing` with `destination: generic/platform=iOS Simulator` |
+| `pre_build_command` | Runs before the Release build, like `pre_test_command` before the tests | A generated project (XcodeGen) has to exist before the Release build too |
+
+A second call of the workflow with its own `test_scheme` and `destination` adds a second platform. Both calls queue on the one `macos-ui` runner.
 
 ## Parallel work
 
